@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>不太聪明的Android Notes | ysq试图学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="写Android的时候感觉自己十分不聪明Q^Q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不太聪明的Android Notes">
+<meta property="og:url" content="https://y-sq.github.io/2020/01/07/Android/index.html">
+<meta property="og:site_name" content="ysq试图学习">
+<meta property="og:description" content="写Android的时候感觉自己十分不聪明Q^Q">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://y-sq.github.io/2020/01/07/Android/activity_lifecycle.png">
+<meta property="og:image" content="https://y-sq.github.io/2020/01/07/Android/activity_lifecycle_2.png">
+<meta property="og:image" content="https://y-sq.github.io/2020/01/07/Android/activity_ending_1.PNG">
+<meta property="og:image" content="https://y-sq.github.io/2020/01/07/Android/activity_ending_2.PNG">
+<meta property="og:image" content="https://y-sq.github.io/2020/01/07/Android/activity_ending_3.PNG">
+<meta property="og:image" content="https://y-sq.github.io/2020/01/07/Android/activity_starting_1.PNG">
+<meta property="og:image" content="https://y-sq.github.io/2020/01/07/Android/activity_starting_2.PNG">
+<meta property="og:image" content="https://y-sq.github.io/2020/01/07/Android/ui_1.PNG">
+<meta property="og:image" content="https://y-sq.github.io/2020/01/07/Android/fragment_lifecycle.png">
+<meta property="article:published_time" content="2020-01-08T04:05:23.000Z">
+<meta property="article:modified_time" content="2020-09-11T23:59:22.886Z">
+<meta property="article:author" content="ysq">
+<meta property="article:tag" content="开发app还是bug呢">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://y-sq.github.io/2020/01/07/Android/activity_lifecycle.png">
+  
+    <link rel="alternate" href="/atom.xml" title="ysq试图学习" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ysq试图学习</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">All Posts</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" target="_blank" rel="noopener" href="https://github.com/y-sq">Github</a>
+        
+          <a class="main-nav-link" href="/%E0%B8%85%CB%99%E2%B0%99%CB%99%E0%B8%85">ysq的鱼塘</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://y-sq.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Android" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/07/Android/" class="article-date">
+  <time datetime="2020-01-08T04:05:23.000Z" itemprop="datePublished">2020-01-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      不太聪明的Android Notes
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写Android的时候感觉自己十分不聪明Q^Q</p>
+<a id="more"></a>
+
+<h4 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h4><h5 id="activity的生命周期"><a href="#activity的生命周期" class="headerlink" title="activity的生命周期"></a>activity的生命周期</h5><img src="/2020/01/07/Android/activity_lifecycle.png" class="" title="activity的生命周期">
+
+<img src="/2020/01/07/Android/activity_lifecycle_2.png" class="" title="activity的生命周期">
+<p>（以上截图来自《Android第一行代码》）</p>
+<h5 id="activity的四种启动方式"><a href="#activity的四种启动方式" class="headerlink" title="activity的四种启动方式"></a>activity的四种启动方式</h5><ul>
+<li>（在AndroidManifest.xml种通过android:launchMode进行更改）</li>
+<li>standard</li>
+<li>singleTop</li>
+<li>singleTask</li>
+<li>singleInstance</li>
+</ul>
+<h5 id="退出整个应用"><a href="#退出整个应用" class="headerlink" title="退出整个应用"></a>退出整个应用</h5><img src="/2020/01/07/Android/activity_ending_1.PNG" class="" title="activity的生命周期">
+<img src="/2020/01/07/Android/activity_ending_2.PNG" class="" title="activity的生命周期">
+<img src="/2020/01/07/Android/activity_ending_3.PNG" class="" title="activity的生命周期">
+
+<p>（以上截图来自《Android第一行代码》）</p>
+<h5 id="启动一个activity"><a href="#启动一个activity" class="headerlink" title="启动一个activity"></a>启动一个activity</h5><img src="/2020/01/07/Android/activity_starting_1.PNG" class="" title="activity的生命周期">
+<img src="/2020/01/07/Android/activity_starting_2.PNG" class="" title="activity的生命周期">
+
+<p>（以上截图来自《Android第一行代码》）</p>
+<blockquote>
+<p>//《Android第一行代码》 每章的“小节与点评”写得可太可爱了ฅʕ•̫͡•ʔฅ</p>
+</blockquote>
+<h5 id="屏幕旋转时丢失数据"><a href="#屏幕旋转时丢失数据" class="headerlink" title="屏幕旋转时丢失数据"></a>屏幕旋转时丢失数据</h5><ul>
+<li>屏幕旋转时会发生 onPause –&gt;onSaveInstanceState –&gt;onStop –&gt;onDestroy –&gt;onCreate–&gt;onStart –&gt; onRestoreInstanceState–&gt;onResume –&gt;onPause –&gt;onStop –&gt;onDestroy</li>
+<li>在Manifest设置android:configChanges=”orientation|keyboardHidden|screenSize”则不会发生以上过程，只会调用onConfigurationChanged方法。但并不是一个合适的解决方法。</li>
+<li>应当直接解决活动被重新开始时的数据保存与恢复问题。</li>
+</ul>
+<h4 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h4><img src="/2020/01/07/Android/ui_1.PNG" class="" title="一些UI控件的继承关系">
+<ul>
+<li>LinearLayout<ul>
+<li>layout_weight<br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3995825/what-does-androidlayout-weight-mean">What does android:layout_weight mean?</a></li>
+<li>layout_gravity</li>
+</ul>
+</li>
+<li>RelativeLayout</li>
+<li>DatePicker / TimePicker</li>
+<li>ListView; RecyclerView</li>
+</ul>
+<h4 id="Fragments"><a href="#Fragments" class="headerlink" title="Fragments"></a>Fragments</h4><ul>
+<li>fragment是activity中的一个模块。它有自己的lifecycle可以接收自己的输入事件。</li>
+<li>使用fragment创造可以重用的安卓组件。</li>
+<li>fragment的生命周期<img src="/2020/01/07/Android/fragment_lifecycle.png" class="" title="fragment的生命周期">
+
+</li>
+</ul>
+<h4 id="Androidx"><a href="#Androidx" class="headerlink" title="Androidx"></a>Androidx</h4><ul>
+<li>Androidx是重新设计的library；Android hierarchy将仅用于Android default classes，而其余库和依赖都会在androidx内。Android.support将不再被维护，28.0.0是最后一版。安卓将只更新androidx。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.android.com/jetpack/androidx">Androidx Overview</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.android.com/jetpack/androidx/migrate">Migrating to Androidx</a> </li>
+</ul>
+<h4 id="Material-Design"><a href="#Material-Design" class="headerlink" title="Material Design"></a>Material Design</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://material.io/develop/android/">Develop for Android - Material Design</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://y-sq.github.io/2020/01/07/Android/" data-id="ckeywlkoa00012cucdcl8g5wg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91app%E8%BF%98%E6%98%AFbug%E5%91%A2/" rel="tag">开发app还是bug呢</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/07/effective-Cpp/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          这次更新看完effective C++了吗
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/13/%E5%BC%80%E5%A7%8B%E7%9C%8Bsicp/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">开始看sicp</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/" rel="tag">...))))))))))</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91app%E8%BF%98%E6%98%AFbug%E5%91%A2/" rel="tag">开发app还是bug呢</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%88%91%E5%92%8C%E6%9C%BA%E5%99%A8%E9%83%BD%E5%9C%A8%E5%AD%A6%E4%B9%A0/" rel="tag">我和机器都在学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%98%AF%E5%8F%AF%E7%88%B1%E7%9A%84C-%E5%90%97/" rel="tag">是可爱的C++吗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E5%B0%B1%E5%8F%ABCUDA-HPC%E7%9A%84%E6%AD%A3%E7%BB%8Ftag/" rel="tag">这是一个就叫CUDA & HPC的正经tag</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/" style="font-size: 10px;">...))))))))))</a> <a href="/tags/%E5%BC%80%E5%8F%91app%E8%BF%98%E6%98%AFbug%E5%91%A2/" style="font-size: 10px;">开发app还是bug呢</a> <a href="/tags/%E6%88%91%E5%92%8C%E6%9C%BA%E5%99%A8%E9%83%BD%E5%9C%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">我和机器都在学习</a> <a href="/tags/%E6%98%AF%E5%8F%AF%E7%88%B1%E7%9A%84C-%E5%90%97/" style="font-size: 10px;">是可爱的C++吗</a> <a href="/tags/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E5%B0%B1%E5%8F%ABCUDA-HPC%E7%9A%84%E6%AD%A3%E7%BB%8Ftag/" style="font-size: 20px;">这是一个就叫CUDA & HPC的正经tag</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/26/cuda-example-matrix-operations/">CUDA Examples 1, Some Matrix Operations</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/09/cuda-hpc/">原来CUDA的全称是Compute Unified Device Architecture</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/08/PyTorch/">普通的PyTorch Notes</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/effective-Cpp/">这次更新看完effective C++了吗</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Android/">不太聪明的Android Notes</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 ysq<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">All Posts</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a target="_blank" rel="noopener" href="https://github.com/y-sq" class="mobile-nav-link">Github</a>
+  
+    <a href="/%E0%B8%85%CB%99%E2%B0%99%CB%99%E0%B8%85" class="mobile-nav-link">ysq的鱼塘</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>这次更新看完effective C++了吗 | ysq试图学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="没有 Ծ‸Ծ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="这次更新看完effective C++了吗">
+<meta property="og:url" content="https://y-sq.github.io/2020/01/07/effective-Cpp/index.html">
+<meta property="og:site_name" content="ysq试图学习">
+<meta property="og:description" content="没有 Ծ‸Ծ">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://y-sq.github.io/2020/01/07/effective-Cpp/01.PNG">
+<meta property="og:image" content="https://y-sq.github.io/2020/01/07/effective-Cpp/02.PNG">
+<meta property="og:image" content="https://y-sq.github.io/2020/01/07/effective-Cpp/03.PNG">
+<meta property="article:published_time" content="2020-01-08T04:06:12.000Z">
+<meta property="article:modified_time" content="2020-09-11T23:59:22.893Z">
+<meta property="article:author" content="ysq">
+<meta property="article:tag" content="是可爱的C++吗">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://y-sq.github.io/2020/01/07/effective-Cpp/01.PNG">
+  
+    <link rel="alternate" href="/atom.xml" title="ysq试图学习" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ysq试图学习</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">All Posts</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" target="_blank" rel="noopener" href="https://github.com/y-sq">Github</a>
+        
+          <a class="main-nav-link" href="/%E0%B8%85%CB%99%E2%B0%99%CB%99%E0%B8%85">ysq的鱼塘</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://y-sq.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-effective-Cpp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/07/effective-Cpp/" class="article-date">
+  <time datetime="2020-01-08T04:06:12.000Z" itemprop="datePublished">2020-01-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      这次更新看完effective C++了吗
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>没有 Ծ‸Ծ</p>
+<a id="more"></a>
+
+<h2 id="To-search-list"><a href="#To-search-list" class="headerlink" title="To search list"></a>To search list</h2><ul>
+<li>multi-thread in latest c++</li>
+<li>template metaprogramming examples</li>
+<li>boost examples</li>
+</ul>
+<h2 id="乱七八糟的相关语法"><a href="#乱七八糟的相关语法" class="headerlink" title="乱七八糟的相关语法"></a>乱七八糟的相关语法</h2><h4 id="explicit"><a href="#explicit" class="headerlink" title="explicit"></a>explicit</h4><ul>
+<li>将函数声明为explicit，阻止隐式类型转换</li>
+</ul>
+<h4 id=""><a href="#" class="headerlink" title="~"></a>~</h4><ul>
+<li>Object o1 = o2; // Object(const Object &amp; rhs)</li>
+<li>Object o1; o1 = o2; // Object&amp; operator= (const Object &amp; rhs)</li>
+<li>函数调用pass by value调用copy构造函数</li>
+</ul>
+<h4 id="std-for-each-examples"><a href="#std-for-each-examples" class="headerlink" title="std::for_each examples"></a>std::for_each examples</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myfunction</span> <span class="params">(<span class="keyword">int</span> i)</span> </span>&#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; i; &#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">myclass</span> &#123;</span> <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; i;&#125; &#125; myobject;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">myvector</span><span class="params">(&#123;<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>&#125;)</span></span>;</span><br><span class="line">  for_each (myvector.begin(), myvector.end(), myfunction); <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">  for_each (myvector.begin(), myvector.end(), myobject); <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">  <span class="comment">// function objects：“行为像函数”的对象，来自于重载operator()</span></span><br><span class="line">  for_each (myvector.begin(), myvector.end(), [](<span class="keyword">int</span> i)&#123;<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; i;&#125;); <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="class里的const-static"><a href="#class里的const-static" class="headerlink" title="class里的const static"></a>class里的const static</h2><img src="/2020/01/07/effective-Cpp/01.PNG" class="">
+<img src="/2020/01/07/effective-Cpp/02.PNG" class="">
+<h4 id="const-enum-define"><a href="#const-enum-define" class="headerlink" title="const, enum, #define"></a>const, enum, #define</h4><ul>
+<li>取const的地址式合法的，取enum的地址不合法</li>
+<li>不聪明的编译器可能在“整数型const对象”上设计另外的存储空间，而enum可以避免非必要的内存分配</li>
+</ul>
+<h2 id="const"><a href="#const" class="headerlink" title="const"></a>const</h2><h4 id="const-and-pointers"><a href="#const-and-pointers" class="headerlink" title="const and pointers:"></a>const and pointers:</h4><ul>
+<li>const std::vector<int>::iterator iter = … // iter不能指向其他东西(T* const)</li>
+<li>std::vector<int>::const_iterator iter = … // iter指向的东西不可以被改动(T* const)</li>
+</ul>
+<h4 id="const成员函数："><a href="#const成员函数：" class="headerlink" title="const成员函数："></a>const成员函数：</h4><ul>
+<li>让该成员函数可作用于const对象上</li>
+<li>两个只有constness不用的成员函数可以被重载<ul>
+<li>例如 <code>class test&#123; void f() &#123;&#125;; void f() const &#123;&#125;; &#125;;</code></li>
+</ul>
+</li>
+<li>bitwise constness/physical constness 与 logical constness</li>
+<li>mutable</li>
+<li>运用const成员函数生成其对应的non-const版本（反向做法不应该出现）<img src="/2020/01/07/effective-Cpp/03.PNG" class="">
+
+</li>
+</ul>
+<h2 id="initialization"><a href="#initialization" class="headerlink" title="initialization"></a>initialization</h2><ul>
+<li>成员变量的初始化发生在进入构造函数本体前，除了内置类型 会自动调用这些成员的default构造函数。</li>
+<li>A::A(): a(0) {b=0;} a调用构造函数初始化，b首先调用default构造函数再进行赋值操作。</li>
+<li>base早于derived被初始化，class成员变量总是以其声明次序被初始化，即使它们在成员初始列中以不同的次序出现。</li>
+</ul>
+<h4 id="不同编译单元内定义的non-local-static对象"><a href="#不同编译单元内定义的non-local-static对象" class="headerlink" title="不同编译单元内定义的non-local static对象"></a>不同编译单元内定义的non-local static对象</h4><ul>
+<li>初始化顺序次序无明确定义，有可能在使用时对象并未构造完成。</li>
+<li>将每个non-local static放到函数内成为local static</li>
+<li>A&amp; f() { static A a; return a; }</li>
+<li>多线程系统中带有不确定性。可以在单线程启动阶段，手动调用所有的reference-returning函数</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://y-sq.github.io/2020/01/07/effective-Cpp/" data-id="ckeywlkog00062cuc5t4oawdb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%98%AF%E5%8F%AF%E7%88%B1%E7%9A%84C-%E5%90%97/" rel="tag">是可爱的C++吗</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/08/PyTorch/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          普通的PyTorch Notes
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/07/Android/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">不太聪明的Android Notes</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/" rel="tag">...))))))))))</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91app%E8%BF%98%E6%98%AFbug%E5%91%A2/" rel="tag">开发app还是bug呢</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%88%91%E5%92%8C%E6%9C%BA%E5%99%A8%E9%83%BD%E5%9C%A8%E5%AD%A6%E4%B9%A0/" rel="tag">我和机器都在学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%98%AF%E5%8F%AF%E7%88%B1%E7%9A%84C-%E5%90%97/" rel="tag">是可爱的C++吗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E5%B0%B1%E5%8F%ABCUDA-HPC%E7%9A%84%E6%AD%A3%E7%BB%8Ftag/" rel="tag">这是一个就叫CUDA & HPC的正经tag</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/" style="font-size: 10px;">...))))))))))</a> <a href="/tags/%E5%BC%80%E5%8F%91app%E8%BF%98%E6%98%AFbug%E5%91%A2/" style="font-size: 10px;">开发app还是bug呢</a> <a href="/tags/%E6%88%91%E5%92%8C%E6%9C%BA%E5%99%A8%E9%83%BD%E5%9C%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">我和机器都在学习</a> <a href="/tags/%E6%98%AF%E5%8F%AF%E7%88%B1%E7%9A%84C-%E5%90%97/" style="font-size: 10px;">是可爱的C++吗</a> <a href="/tags/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E5%B0%B1%E5%8F%ABCUDA-HPC%E7%9A%84%E6%AD%A3%E7%BB%8Ftag/" style="font-size: 20px;">这是一个就叫CUDA & HPC的正经tag</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/26/cuda-example-matrix-operations/">CUDA Examples 1, Some Matrix Operations</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/09/cuda-hpc/">原来CUDA的全称是Compute Unified Device Architecture</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/08/PyTorch/">普通的PyTorch Notes</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/effective-Cpp/">这次更新看完effective C++了吗</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Android/">不太聪明的Android Notes</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 ysq<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">All Posts</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a target="_blank" rel="noopener" href="https://github.com/y-sq" class="mobile-nav-link">Github</a>
+  
+    <a href="/%E0%B8%85%CB%99%E2%B0%99%CB%99%E0%B8%85" class="mobile-nav-link">ysq的鱼塘</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

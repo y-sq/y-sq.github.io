@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>CUDA Examples 1, Some Matrix Operations | ysq试图学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="matrix_operations.cu几个矩阵操作的CUDA实现：A*B, A^TBA, ||A||_F(为什么打不出来latex格式的数学公式Q^Q)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CUDA Examples 1, Some Matrix Operations">
+<meta property="og:url" content="https://y-sq.github.io/2020/04/26/cuda-example-matrix-operations/index.html">
+<meta property="og:site_name" content="ysq试图学习">
+<meta property="og:description" content="matrix_operations.cu几个矩阵操作的CUDA实现：A*B, A^TBA, ||A||_F(为什么打不出来latex格式的数学公式Q^Q)">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-27T03:04:13.000Z">
+<meta property="article:modified_time" content="2020-09-11T23:59:22.892Z">
+<meta property="article:author" content="ysq">
+<meta property="article:tag" content="这是一个就叫CUDA &amp; HPC的正经tag">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="ysq试图学习" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ysq试图学习</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">All Posts</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" target="_blank" rel="noopener" href="https://github.com/y-sq">Github</a>
+        
+          <a class="main-nav-link" href="/%E0%B8%85%CB%99%E2%B0%99%CB%99%E0%B8%85">ysq的鱼塘</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://y-sq.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cuda-example-matrix-operations" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/cuda-example-matrix-operations/" class="article-date">
+  <time datetime="2020-04-27T03:04:13.000Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CUDA Examples 1, Some Matrix Operations
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://github.com/y-sq/CUDA_Practice/blob/master/matrix_operations.cu">matrix_operations.cu</a><br>几个矩阵操作的CUDA实现：A*B, A^TBA, ||A||_F<br>(为什么打不出来latex格式的数学公式Q^Q)</p>
+<a id="more"></a>
+
+<h2 id="计算A-B的matrix-multiplication"><a href="#计算A-B的matrix-multiplication" class="headerlink" title="计算A*B的matrix multiplication"></a>计算A*B的matrix multiplication</h2><ul>
+<li>CUDA Programming Guideline上讲shared memory时的一个例子。CUDA samples里有给出代码例子。</li>
+<li>最普通的做法是每个thread负责结果的一个元素，计算时要从global memory分别load A和B的一行和一列。这个方式有大量的且各个线程之间重复的global memory access。    </li>
+<li>一个优化的方法是使用shared memory，分block进行load和计算。</li>
+<li>在使用shared memory时，每个thread的idx.y和idx.x可以分别对应矩阵的第一或第二个维度。设计threadIdx和矩阵元素之间映射关系的时候要注意一下写成global memory有locality，shared memory可以避免bank conflict的形式。</li>
+<li>在cuda给的sample文件里，每个block内的一层for k = 0:block_size的loop加了loop unroll。<ul>
+<li>由于unroll时loop变量的上下限要是constexpr，写成template的形式比较容易。</li>
+<li>【？】但我自己跑的时候，发现不论加不加unroll都是一样的时间，不知道为什么…</li>
+</ul>
+</li>
+<li>【？】cuda sample以及其他地方的实现例子，都使用了1D array作为一个matrix。但是如果矩阵的列数不是32的整数倍，fetch global data会遇到alignment的问题，有点疑惑为什么我看到的例子都用了1D array。<ul>
+<li>如果解决alignment问题，应该可以用cudaMallocPitch。</li>
+</ul>
+</li>
+<li>【？】由于矩阵的维度不一定是block_size的整数倍，实现的时候可以padding / if-else解决。我还没想清楚什么解决方式最好… <ul>
+<li>暂时在copy global block的时候写了个if-else把global memory里超过范围的元素以0 copy到shared里，写回结果的时候if-else忽略掉范围外的元素。</li>
+<li>加了个template，调用时可以按照dimension是不是block_size的倍数决定调用哪个实例化的kernel，是倍数时可以省略掉避免invalid index的if-else。</li>
+</ul>
+</li>
+</ul>
+<h2 id="A-TBA"><a href="#A-TBA" class="headerlink" title="A^TBA"></a>A^TBA</h2><ul>
+<li>两次矩阵乘法(A^T*B) * A<ul>
+<li>考虑了一下先算A^TB和先算BA哪个计算更少，然后发现完全一样23333</li>
+<li>于是这样实现只需要写很少的代码，应该写个调用multiplication kernel的wrapper function，现在的实现里面有不少重复代码…</li>
+</ul>
+</li>
+<li>一次实现A^T*B，也分block计算<ul>
+<li>先对A transpose了一次求了个A^T<ul>
+<li>应该也可以把transpose得到A^T的过程也结合在计算(A^T*B) * A的kernel里，能少一点开销… 但代码又会变复杂….</li>
+<li>transpose的kernel使用了一块stride为block_size+1(就是一个不是2倍数的stride，避免bank conflict)的shared memory，把一个block的sub_matrix先global-&gt;shared再shared-&gt;global，两次访问global的时候都可以对cache友好。</li>
+</ul>
+</li>
+<li>求出A^T * B的一个block的结果，load进A的所有需要与这个block做运算的一行block，每个block的结果都atomicAdd到最终目标矩阵上。<ul>
+<li>这样还是有很多global memory access，也有很多atomicAdd的操作…</li>
+</ul>
+</li>
+<li>测了一下这种写法和两次multiplication的性能并没有什么明显的优势… 可能这个问题还有更机智的写法…</li>
+</ul>
+</li>
+</ul>
+<h2 id="F-norm-of-a-matrix"><a href="#F-norm-of-a-matrix" class="headerlink" title="F_norm of a matrix"></a>F_norm of a matrix</h2><p>F_norm，类似向量的l_2 norm。Parallel reduction的例子。<br>（每个vector load and add multiple elements?）</p>
+<ul>
+<li>也在CUDA samples里有给出例子</li>
+<li>按树状reduction，每层减少一半待reduction的元素</li>
+<li>cuda没有在所有threads间synchronization的API，只有对一个block中threads进行sync的API。可以通过在host上多次调用kernels解决。</li>
+<li>由于每层data减半，working threads也减半，按照threadidx设计哪些thread继续reduce的时候，将global data access的模式写成连续的threads往下一层继续，以避免divergent branching。 </li>
+<li>每个block将data从global写入到shared，最后将这个block的reduce结果写回global。写入shared和写回global的时候，也是要让global access是连续的，shared access是避免bank conflict(可以写成stride为1的)。</li>
+<li>第一次load的时候可以从global load两个元素，将相加后的结果写入shared，可以省掉一半的threads</li>
+<li>将最后一个warp unroll。每个warp是同步的，在一个warp内可以省略syncThreads。但由于data[] += …，要把data声明成volatile的。<ul>
+<li>在Volta架构上似乎不可以…</li>
+<li>可以用shuffle在同一个</li>
+</ul>
+</li>
+<li>使用template将block_size作为一个常数，可以将kernel的每层reduce完全展开。</li>
+<li>每个threads在第一层先将多个elements相加后再写入shared进行后面的reduce。<ul>
+<li>每个thread处理1（或2）个elements的时候，需要O(N)个threads，每个thread完成O(lgN)的计算。</li>
+<li>每个thread处理O(lgN)个elements，这样需要O(N/lgN)个threads，每个thread完成O(lgN)的计算。<ul>
+<li>一个叫Brent’s theorem的关于并行算法的定理     </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>实际使用reduction的时候，可以用thrust库提供的reduction，以及thrust提供的比较方便的vector等templates。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://y-sq.github.io/2020/04/26/cuda-example-matrix-operations/" data-id="ckeywlkoe00042cuc1s6vcfvd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E5%B0%B1%E5%8F%ABCUDA-HPC%E7%9A%84%E6%AD%A3%E7%BB%8Ftag/" rel="tag">这是一个就叫CUDA & HPC的正经tag</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/09/cuda-hpc/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">原来CUDA的全称是Compute Unified Device Architecture</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/" rel="tag">...))))))))))</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91app%E8%BF%98%E6%98%AFbug%E5%91%A2/" rel="tag">开发app还是bug呢</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%88%91%E5%92%8C%E6%9C%BA%E5%99%A8%E9%83%BD%E5%9C%A8%E5%AD%A6%E4%B9%A0/" rel="tag">我和机器都在学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%98%AF%E5%8F%AF%E7%88%B1%E7%9A%84C-%E5%90%97/" rel="tag">是可爱的C++吗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E5%B0%B1%E5%8F%ABCUDA-HPC%E7%9A%84%E6%AD%A3%E7%BB%8Ftag/" rel="tag">这是一个就叫CUDA & HPC的正经tag</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/" style="font-size: 10px;">...))))))))))</a> <a href="/tags/%E5%BC%80%E5%8F%91app%E8%BF%98%E6%98%AFbug%E5%91%A2/" style="font-size: 10px;">开发app还是bug呢</a> <a href="/tags/%E6%88%91%E5%92%8C%E6%9C%BA%E5%99%A8%E9%83%BD%E5%9C%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">我和机器都在学习</a> <a href="/tags/%E6%98%AF%E5%8F%AF%E7%88%B1%E7%9A%84C-%E5%90%97/" style="font-size: 10px;">是可爱的C++吗</a> <a href="/tags/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E5%B0%B1%E5%8F%ABCUDA-HPC%E7%9A%84%E6%AD%A3%E7%BB%8Ftag/" style="font-size: 20px;">这是一个就叫CUDA & HPC的正经tag</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/26/cuda-example-matrix-operations/">CUDA Examples 1, Some Matrix Operations</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/09/cuda-hpc/">原来CUDA的全称是Compute Unified Device Architecture</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/08/PyTorch/">普通的PyTorch Notes</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/effective-Cpp/">这次更新看完effective C++了吗</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Android/">不太聪明的Android Notes</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 ysq<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">All Posts</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a target="_blank" rel="noopener" href="https://github.com/y-sq" class="mobile-nav-link">Github</a>
+  
+    <a href="/%E0%B8%85%CB%99%E2%B0%99%CB%99%E0%B8%85" class="mobile-nav-link">ysq的鱼塘</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

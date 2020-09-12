@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>原来CUDA的全称是Compute Unified Device Architecture | ysq试图学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近在上CUDA和HPC的课，顺带把一些东西记一下（我今年这个要记博客的flag一定不会倒2333）。课和reading materials都是英语的，所以下面可能有一部分会是英语写的… （但遇到我有英语障碍的时候还是会换会中文… &gt; &lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原来CUDA的全称是Compute Unified Device Architecture">
+<meta property="og:url" content="https://y-sq.github.io/2020/04/09/cuda-hpc/index.html">
+<meta property="og:site_name" content="ysq试图学习">
+<meta property="og:description" content="最近在上CUDA和HPC的课，顺带把一些东西记一下（我今年这个要记博客的flag一定不会倒2333）。课和reading materials都是英语的，所以下面可能有一部分会是英语写的… （但遇到我有英语障碍的时候还是会换会中文… &gt; &lt;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-09T21:28:33.000Z">
+<meta property="article:modified_time" content="2021-02-14T04:06:20.139Z">
+<meta property="article:author" content="ysq">
+<meta property="article:tag" content="这是一个就叫CUDA &amp; HPC的正经tag">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="ysq试图学习" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ysq试图学习</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">All Posts</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" target="_blank" rel="noopener" href="https://github.com/y-sq">Github</a>
+        
+          <a class="main-nav-link" href="/%E0%B8%85%CB%99%E2%B0%99%CB%99%E0%B8%85">ysq的鱼塘</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://y-sq.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cuda-hpc" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/09/cuda-hpc/" class="article-date">
+  <time datetime="2020-04-09T21:28:33.000Z" itemprop="datePublished">2020-04-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      原来CUDA的全称是Compute Unified Device Architecture
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在上CUDA和HPC的课，顺带把一些东西记一下（我今年这个要记博客的flag一定不会倒2333）。课和reading materials都是英语的，所以下面可能有一部分会是英语写的… （但遇到我有英语障碍的时候还是会换会中文… &gt; &lt;</p>
+<a id="more"></a>
+
+
+<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.nvidia.com/pdf/CUDA_C_Programming_Guide.pdf">CUDA C++ PROGRAMMING GUIDE</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html">CUDA C++ Best Practices Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://xmartlabs.github.io/cuda-calculator/">CUDA Occupancy Calculator</a></li>
+<li><a target="_blank" rel="noopener" href="https://godbolt.org/">Compiler Explorer</a></li>
+</ul>
+<h2 id="SMs-SPs-Warps-Blocks-and-Threads"><a href="#SMs-SPs-Warps-Blocks-and-Threads" class="headerlink" title="SMs, SPs, Warps, Blocks and Threads"></a>SMs, SPs, Warps, Blocks and Threads</h2><h5 id="Stream-Multiprocessor-and-Scalar-Processors"><a href="#Stream-Multiprocessor-and-Scalar-Processors" class="headerlink" title="Stream Multiprocessor and Scalar Processors"></a>Stream Multiprocessor and Scalar Processors</h5><ul>
+<li>Each GPU contains several SMs, and each SM contains several SPs.</li>
+<li>Schedulers<ul>
+<li>A device-level scheduler to assign blocks to SM</li>
+<li>A SM-level scheduler to schedule the execution of the threads in a block onto the SM functional units.</li>
+</ul>
+</li>
+</ul>
+<h5 id="Blocks-Threads-and-Grids"><a href="#Blocks-Threads-and-Grids" class="headerlink" title="Blocks, Threads and Grids"></a>Blocks, Threads and Grids</h5><ul>
+<li>There is a limitation on #blocks in a grid and #thread per block.</li>
+<li>threadUdx, blockDim, blockIdx, gridDim, warpSize</li>
+</ul>
+<h5 id="SMs-and-Blocks"><a href="#SMs-and-Blocks" class="headerlink" title="SMs and Blocks:"></a>SMs and Blocks:</h5><ul>
+<li>Thread blocks are distributed to SMs. A block can only be distributed to a same SM.</li>
+<li>Each SM can have more than one and limited number of resident blocks.</li>
+<li>Once a block is executing by one SM, the block leaves that SM only after all threads are finished. Once a block is finished &amp; retired, only then can another block land for execution on that SM. </li>
+</ul>
+<h5 id="Warps-and-Thread-Blocks"><a href="#Warps-and-Thread-Blocks" class="headerlink" title="Warps, and Thread Blocks"></a>Warps, and Thread Blocks</h5><ul>
+<li>The basic scheduling unit on an SM.</li>
+<li>A group of 32 threads of consecutive IDs and from the same block.</li>
+<li>No ordering among wraps.            </li>
+<li>Resident blocks(or block) on one SM can form several wraps. There are limitation of number of resident warps on an SM.</li>
+<li>The cost of warp scheduling and context switching is nearly zero.</li>
+<li>More threads per block provide SM with more wraps to switch between. (But there are also limitation of #thread per block.)</li>
+</ul>
+<h5 id="Thread-Divergence"><a href="#Thread-Divergence" class="headerlink" title="Thread Divergence"></a>Thread Divergence</h5><h2 id="Memory-Architecture"><a href="#Memory-Architecture" class="headerlink" title="Memory Architecture"></a>Memory Architecture</h2><h5 id="Registers"><a href="#Registers" class="headerlink" title="Registers"></a>Registers</h5><ul>
+<li>All variables used in a kernel use registers<ul>
+<li>For a variable to be operated on, it must be stored in a registers at some point in the execution.</li>
+<li>During the execution of the kernel, the number of registers occupied keeps changing.</li>
+</ul>
+</li>
+<li>A thread can only access registers assigned to it. And there is maximum number of registers of one thread.</li>
+<li>Size of a register is 4 bytes. A char (or any other types that are less than 4 bytes) uses a whole register.</li>
+<li>Registers can spill into local memory, which is much slower than registers.</li>
+<li>【？】What if registers are used up? Use local memory or reduce number of blocks per SM?</li>
+</ul>
+<h5 id="Local-Memory"><a href="#Local-Memory" class="headerlink" title="Local Memory"></a>Local Memory</h5><ul>
+<li>Local memory does not physically exist. It is stored in global memory.</li>
+<li>LMEM is used if the source code exceeds register limit.</li>
+<li>Arrays declared inside kernels, are placed in LMEM since registers aren’t indexable.</li>
+</ul>
+<h5 id="Shared-Memory"><a href="#Shared-Memory" class="headerlink" title="Shared Memory"></a>Shared Memory</h5><ul>
+<li>Shared Memory it is on-chip(inside SMs), and is in the same physical memory as L1 cache. </li>
+<li>Visible to threads in the same block</li>
+<li>Banks<ul>
+<li>Shared Memory is divided into independent banks. Each SM has 32 memory banks.</li>
+<li>Successive 32-bit words map to successive banks. </li>
+<li>Bits from different banks: no bank conflict and fast</li>
+<li>Bits in same word: broadcast (no bank conflict)</li>
+<li>Bits from different but in same bank: bank conflict</li>
+</ul>
+</li>
+<li>Shared memory has no cache line effects but banking effects.</li>
+</ul>
+<h5 id="Global-Memory"><a href="#Global-Memory" class="headerlink" title="Global Memory"></a>Global Memory</h5><ul>
+<li>Global Memory are on GPU but ont on SMs.</li>
+<li>L1 and L2 cache are used to cache accesses to Global/Constant/Texture memories.</li>
+<li>Global/Constant/Texture memories are accessible by host.</li>
+<li>Better to access contiguous blocks of global memory.</li>
+<li>Block of global memory / A GPU cache line: 128-byte aligned chunk of 128 bytes.</li>
+</ul>
+<h5 id="Constant-Memory"><a href="#Constant-Memory" class="headerlink" title="Constant Memory"></a>Constant Memory</h5><ul>
+<li>Constants initialized by host and can not be modified by device.</li>
+</ul>
+<h5 id="Texture-Memory"><a href="#Texture-Memory" class="headerlink" title="Texture Memory"></a>Texture Memory</h5><h2 id="Streaming"><a href="#Streaming" class="headerlink" title="Streaming"></a>Streaming</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://devblogs.nvidia.com/gpu-pro-tip-cuda-7-streams-simplify-concurrency/">GPU Pro Tip: CUDA 7 Streams Simplify Concurrency</a></li>
+<li>Default stream<ul>
+<li>&lt;&lt;&lt;blocks, threads, bytes, 0 or unspecified&gt;&gt;&gt;: launch a kernel on the default stream</li>
+<li>Default stream has special synchronization rules, things done in stream 0 can not overlap other streams.</li>
+<li>cudaStreamCreateWithFlags and using a cudaStreamNonBlocking flag, is an exception to the blocking of default stream.</li>
+<li>In CUDA 7 and later, __default-stream per-thread</li>
+</ul>
+</li>
+<li>Execution engine; Copy engine(Two sub-engines: H2D and D2H)</li>
+<li>Asynchronous calls<ul>
+<li>kernel launches</li>
+<li>device &lt;-&gt; device memory copies</li>
+<li>host &lt;-&gt; device memory copies of a memory block of 64 KB or less</li>
+<li>memory copy functions that are suffixed with Async</li>
+<li>memory set function calls</li>
+</ul>
+</li>
+<li>cudaMemcpyAsync()<ul>
+<li>requires pinned host memory(allocated using cudaHostAlloc).</li>
+<li>contains an addition parameter, a stream ID</li>
+</ul>
+</li>
+<li>cudaStreamCreate / cudaStreamDestroy</li>
+<li>Synchronize of streams<ul>
+<li>cudaDeviceSynchronize()</li>
+<li>cudaStreamSynchronize()</li>
+<li>cudaStreamWaitEvent()</li>
+<li>cudaStreamQuery()</li>
+</ul>
+</li>
+<li>Stream callbacks, callback functions that are called when stream has finished all work.</li>
+</ul>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><ul>
+<li>The GPU and CPU work in asynchronous mode. <ul>
+<li>The CPU moves on right away after a kernel launch and the GPU works at the same time the CPU works.</li>
+</ul>
+</li>
+<li>Synchronize<ul>
+<li>__syncthreads()</li>
+<li>__threadfence()</li>
+<li>__threadfence_block()</li>
+<li>__threadfence_system()</li>
+<li>volatike</li>
+<li>Atomic Operations</li>
+</ul>
+</li>
+<li>Timing the application<ul>
+<li>cudaEventCreate / cudaEventDestory</li>
+<li>cudaEventRecord</li>
+<li>cudaEventSynchronize</li>
+<li>cudaEventElapsedTime<ul>
+<li>Compute the elapsed time between two events</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>print from device, cudaDeviceSynchronize()<ul>
+<li><a target="_blank" rel="noopener" href="http://15418.courses.cs.cmu.edu/spring2013/article/15">How to print from CUDA</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/19193468/why-do-we-need-cudadevicesynchronize-in-kernels-with-device-printf">why do we need cudaDeviceSynchronize(); in kernels with device-printf?</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/11888772/when-to-call-cudadevicesynchronize">When to call cudaDeviceSynchronize?</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://y-sq.github.io/2020/04/09/cuda-hpc/" data-id="ckeywlkof00052cuc0vx37t0i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E5%B0%B1%E5%8F%ABCUDA-HPC%E7%9A%84%E6%AD%A3%E7%BB%8Ftag/" rel="tag">这是一个就叫CUDA & HPC的正经tag</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/26/cuda-example-matrix-operations/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CUDA Examples 1, Some Matrix Operations
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/08/PyTorch/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">普通的PyTorch Notes</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/" rel="tag">...))))))))))</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%80%E5%8F%91app%E8%BF%98%E6%98%AFbug%E5%91%A2/" rel="tag">开发app还是bug呢</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%88%91%E5%92%8C%E6%9C%BA%E5%99%A8%E9%83%BD%E5%9C%A8%E5%AD%A6%E4%B9%A0/" rel="tag">我和机器都在学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%98%AF%E5%8F%AF%E7%88%B1%E7%9A%84C-%E5%90%97/" rel="tag">是可爱的C++吗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E5%B0%B1%E5%8F%ABCUDA-HPC%E7%9A%84%E6%AD%A3%E7%BB%8Ftag/" rel="tag">这是一个就叫CUDA & HPC的正经tag</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/" style="font-size: 10px;">...))))))))))</a> <a href="/tags/%E5%BC%80%E5%8F%91app%E8%BF%98%E6%98%AFbug%E5%91%A2/" style="font-size: 10px;">开发app还是bug呢</a> <a href="/tags/%E6%88%91%E5%92%8C%E6%9C%BA%E5%99%A8%E9%83%BD%E5%9C%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">我和机器都在学习</a> <a href="/tags/%E6%98%AF%E5%8F%AF%E7%88%B1%E7%9A%84C-%E5%90%97/" style="font-size: 10px;">是可爱的C++吗</a> <a href="/tags/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E5%B0%B1%E5%8F%ABCUDA-HPC%E7%9A%84%E6%AD%A3%E7%BB%8Ftag/" style="font-size: 20px;">这是一个就叫CUDA & HPC的正经tag</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/26/cuda-example-matrix-operations/">CUDA Examples 1, Some Matrix Operations</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/09/cuda-hpc/">原来CUDA的全称是Compute Unified Device Architecture</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/08/PyTorch/">普通的PyTorch Notes</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/effective-Cpp/">这次更新看完effective C++了吗</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Android/">不太聪明的Android Notes</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 ysq<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">All Posts</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a target="_blank" rel="noopener" href="https://github.com/y-sq" class="mobile-nav-link">Github</a>
+  
+    <a href="/%E0%B8%85%CB%99%E2%B0%99%CB%99%E0%B8%85" class="mobile-nav-link">ysq的鱼塘</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
