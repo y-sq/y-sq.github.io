@@ -1,10 +1,9 @@
 # Shuqi Yang
+<font color=gray>shuqi.yang.gr@dartmouth.edu; shuqi.yang.98@gmail.com</font>
+
 
 ## About Me
-<font color=gray>[shuqi.yang.gr@dartmouth.edu; shuqi.yang.98@gmail.com]</font>
-
-I am second-year Master's student at Dartmouth College, advised by Prof. Bo Zhu. My research interests mainly focus on physical simulation and machine learning. 
-
+I am second-year Master's student at Dartmouth College, advised by Prof. Bo Zhu. My research interests mainly focus on physical simulation and machine learning.   
 Before this, I studied for my B.Eng. degree at Dalian University of Technology.
 
 
@@ -20,7 +19,7 @@ Shiying Xiong, Yunjin Tong, Xingzhe He, **Shuqi Yang**, Cheng Yang, Bo Zhu
 
 **Soft Multicopter Control using Neural Dynamics Identification**  
 Conference on Robot Learning (CoRL 2020)  
-Yitong Deng, Yaorui Zhang, Xingzhe He, **Shuqi Yang**, Yunjin Tong, Michael Zhang, Daniel M. DiPietro, Bo Zhu.    
+Yitong Deng, Yaorui Zhang, Xingzhe He, **Shuqi Yang**, Yunjin Tong, Michael Zhang, Daniel M. DiPietro, Bo Zhu    
 [[paper](https://arxiv.org/pdf/2008.07689.pdf)] [[video](https://www.youtube.com/watch?v=DjQq3i53W8k)] [[presentation](https://corlconf.github.io/paper_396/)]
 
 **Learning Physical Constraints with Neural Projections**  
