@@ -1,37 +1,29 @@
-## Welcome to GitHub Pages
+# Shuqi Yang
 
-You can use the [editor on GitHub](https://github.com/y-sq/y-sq.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
+## About Me
+<font color=gray>[shuqi.yang.gr@dartmouth.edu; shuqi.yang.98@gmail.com]</font>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+I am second-year Master's student at Dartmouth College, advised by Prof. Bo Zhu. My research interests mainly focus on physical simulation and machine learning. 
 
-### Markdown
+Before this, I studied for my B.Eng. degree at Dalian University of Technology.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+## Publications
+**Clebsch Gauge Fluid**  
+ACM Transactions on Graphics (SIGGRAPH 2021)  
+**Shuqi Yang**, Shiying Xiong, Yaorui Zhang, Fan Feng, Jinyuan Liu, Bo Zhu
 
-# Header 1
-## Header 2
-### Header 3
+**Nonseparable Symplectic Neural Networks**  
+International Conference on Learning Representations (ICLR 2021)  
+Shiying Xiong, Yunjin Tong, Xingzhe He, **Shuqi Yang**, Cheng Yang, Bo Zhu  
+[[paper](https://arxiv.org/pdf/2010.12636.pdf)] [[supplementary](https://openreview.net/attachment?id=B5VvQrI49Pa&name=supplementary_material)]
 
-- Bulleted
-- List
+**Soft Multicopter Control using Neural Dynamics Identification**  
+Conference on Robot Learning (CoRL 2020)  
+Yitong Deng, Yaorui Zhang, Xingzhe He, **Shuqi Yang**, Yunjin Tong, Michael Zhang, Daniel M. DiPietro, Bo Zhu.    
+[[paper](https://arxiv.org/pdf/2008.07689.pdf)] [[video](https://www.youtube.com/watch?v=DjQq3i53W8k)] [[presentation](https://corlconf.github.io/paper_396/)]
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/y-sq/y-sq.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+**Learning Physical Constraints with Neural Projections**  
+Neural Information Processing Systems (NeurIPS 2020)  
+**Shuqi Yang**, Xingzhe He, Bo Zhu  
+[[paper](https://arxiv.org/abs/2006.12745)] [[code](https://github.com/dartmouth-phys-ai/neural_proj)]  [[website](./projects/neuralProj/)]  
