@@ -1,5 +1,10 @@
+---
+layout: post
+title: Shuqi Yang
+--- 
+
 # Shuqi Yang
-<font color=gray>Email: shuqi.yang.gr@dartmouth.edu; shuqi.yang.98@gmail.com</font>
+<font color=gray>**Email**: shuqi.yang.gr@dartmouth.edu; shuqi.yang.98@gmail.com</font>
 
 <br />
 ## About Me

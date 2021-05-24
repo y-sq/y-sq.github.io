@@ -1,3 +1,7 @@
+---
+layout: post
+title: Learning Physical Constraints with Neural Projections
+--- 
 
 # Learning Physical Constraints with Neural Projections
 
