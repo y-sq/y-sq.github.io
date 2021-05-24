@@ -1,7 +1,7 @@
 # Shuqi Yang
 <font color=gray>Email: shuqi.yang.gr@dartmouth.edu; shuqi.yang.98@gmail.com</font>
 
-
+<br />
 ## About Me
 I am second-year Master's student at Dartmouth College, advised by Prof. Bo Zhu. My research interests mainly focus on physical simulation and machine learning.   
 Before this, I studied for my B.Eng. degree at Dalian University of Technology.
@@ -25,4 +25,4 @@ Yitong Deng, Yaorui Zhang, Xingzhe He, **Shuqi Yang**, Yunjin Tong, Michael Zhan
 **Learning Physical Constraints with Neural Projections**  
 Neural Information Processing Systems (NeurIPS 2020)  
 **Shuqi Yang**, Xingzhe He, Bo Zhu  
-[[paper](https://arxiv.org/abs/2006.12745)] [[code](https://github.com/dartmouth-phys-ai/neural_proj)]  [[website](./projects/neuralProj/)]  
+[[paper](https://arxiv.org/abs/2006.12745)] [[code](https://github.com/dartmouth-phys-ai/neural_proj)]  [[website](https://dartmouth-phys-ai.github.io/projects/neuralProj/)]  
