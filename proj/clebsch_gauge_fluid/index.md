@@ -12,8 +12,8 @@ title: Clebsch Gauge Fluid
 ## Paper 
 **Clebsch Gauge Fluid**  
 ACM Transactions on Graphics (SIGGRAPH 2021)  
-[Shuqi Yang<sup>1</sup>](https://y-sq.github.io/), Shiying Xiong<sup>1</sup>, Yaorui Zhang<sup>1</sup>, Fan Feng<sup>1</sup>, Jinyuan Liu<sup>1</sup>, and [Bo Zhu<sup>1</sup>](https://www.cs.dartmouth.edu/~bozhu/)  
-[paper] **[<a href="res/code.zip" download="code.zip">code</a>]**  **[[website](https://y-sq.github.io/proj/clebsch_gauge_fluid/)]**
+[Shuqi Yang](https://y-sq.github.io/), Shiying Xiong, Yaorui Zhang, Fan Feng, Jinyuan Liu, and [Bo Zhu](https://www.cs.dartmouth.edu/~bozhu/)  
+[paper] **[<a href="res/code.zip" download="code.zip">code</a>]**  **[[webpage](https://y-sq.github.io/proj/clebsch_gauge_fluid/)]**
 
 ## Video / Results
 <video src="res/video.mp4" controls="controls" width="100%">Video</video>
