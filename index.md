@@ -12,7 +12,7 @@ Before this, I studied for my B.Eng. degree at Dalian University of Technology.
 
 **Clebsch Gauge Fluid**  
 ACM Transactions on Graphics (SIGGRAPH 2021)  
-**Shuqi Yang**, Shiying Xiong, Yaorui Zhang, Fan Feng, Jinyuan Liu, Bo Zhu
+**Shuqi Yang**, Shiying Xiong, Yaorui Zhang, Fan Feng, Jinyuan Liu, Bo Zhu   
 [paper] [<a href="res/code.zip" download="code.zip">code</a>]  [[website](https://y-sq.github.io/proj/clebsch_gauge_fluid/)]
 
 

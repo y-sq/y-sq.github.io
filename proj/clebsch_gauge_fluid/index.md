@@ -1,5 +1,8 @@
+---
+layout: post
+--- 
 
-# Clebsch Gauge Fluid
+# Clebsch Gauge Fluid _ Test
 
 [Shuqi Yang<sup>1</sup>](https://y-sq.github.io/), Shiying Xiong<sup>1</sup>, Yaorui Zhang<sup>1</sup>, Fan Feng<sup>1</sup>, Jinyuan Liu<sup>1</sup>, and [Bo Zhu<sup>1</sup>](https://www.cs.dartmouth.edu/~bozhu/)  
 <sup>1</sup>Dartmouth College
