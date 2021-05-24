@@ -13,6 +13,8 @@ Before this, I studied for my B.Eng. degree at Dalian University of Technology.
 **Clebsch Gauge Fluid**  
 ACM Transactions on Graphics (SIGGRAPH 2021)  
 **Shuqi Yang**, Shiying Xiong, Yaorui Zhang, Fan Feng, Jinyuan Liu, Bo Zhu
+[paper] [<a href="res/code.zip" download="code.zip">code</a>]  [[website](https://y-sq.github.io/proj/clebsch_gauge_fluid/)]
+
 
 **Nonseparable Symplectic Neural Networks**  
 International Conference on Learning Representations (ICLR 2021)  
@@ -27,4 +29,4 @@ Yitong Deng, Yaorui Zhang, Xingzhe He, **Shuqi Yang**, Yunjin Tong, Michael Zhan
 **Learning Physical Constraints with Neural Projections**  
 Neural Information Processing Systems (NeurIPS 2020)  
 **Shuqi Yang**, Xingzhe He, Bo Zhu  
-[[paper](https://arxiv.org/abs/2006.12745)] [[code](https://github.com/dartmouth-phys-ai/neural_proj)]  [[website](https://dartmouth-phys-ai.github.io/projects/neuralProj/)]  
+[[paper](https://arxiv.org/abs/2006.12745)] [[code](https://github.com/y-sq/neural_proj)] [[website](https://y-sq.github.io/proj/neural_proj/)]
