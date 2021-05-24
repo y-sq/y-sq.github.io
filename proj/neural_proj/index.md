@@ -6,7 +6,7 @@
 
 <br>
 
-<img src="img/overview.png"/>
+<img src="res/overview.png"/>
 
 ## Paper 
 **Learning Physical Constraints with Neural Projections**  

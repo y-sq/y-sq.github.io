@@ -22,7 +22,7 @@ ACM Transactions on Graphics (SIGGRAPH 2021)
 @inproceedings{yang2021clebsch,
   title={Clebsch Gauge Fluid},
   author={Yang, Shuqi and Xiong, Shiying and Zhang, Yaorui and Feng, Fan and Liu, Jinyuan and Zhu, Bo},
-  booktitle={ACM SIGGRAPH 2021 (to appear)},
+  booktitle={ACM SIGGRAPH 2021},
   year={2021}
 }
 ```

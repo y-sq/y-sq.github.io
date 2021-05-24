@@ -27,8 +27,4 @@ Yitong Deng, Yaorui Zhang, Xingzhe He, **Shuqi Yang**, Yunjin Tong, Michael Zhan
 **Learning Physical Constraints with Neural Projections**  
 Neural Information Processing Systems (NeurIPS 2020)  
 **Shuqi Yang**, Xingzhe He, Bo Zhu  
-<<<<<<< HEAD
 [[paper](https://arxiv.org/abs/2006.12745)] [[code](https://github.com/dartmouth-phys-ai/neural_proj)]  [[website](https://dartmouth-phys-ai.github.io/projects/neuralProj/)]  
-=======
-[[paper](https://arxiv.org/abs/2006.12745)] [[code](https://github.com/dartmouth-phys-ai/neural_proj)]  [[website](https://dartmouth-phys-ai.github.io/projects/neuralProj/)]  
->>>>>>> 34d41a7c819bf11f8f15d7e9657105e4461b2a8b
