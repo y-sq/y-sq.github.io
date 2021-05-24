@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Learning Physical Constraints with Neural Projections
 --- 
 
