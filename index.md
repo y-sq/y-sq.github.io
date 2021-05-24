@@ -3,11 +3,13 @@
 
 <br />
 ## About Me
+
 I am second-year Master's student at Dartmouth College, advised by Prof. Bo Zhu. My research interests mainly focus on physical simulation and machine learning.   
 Before this, I studied for my B.Eng. degree at Dalian University of Technology.
 
 
 ## Publications
+
 **Clebsch Gauge Fluid**  
 ACM Transactions on Graphics (SIGGRAPH 2021)  
 **Shuqi Yang**, Shiying Xiong, Yaorui Zhang, Fan Feng, Jinyuan Liu, Bo Zhu
@@ -25,4 +27,8 @@ Yitong Deng, Yaorui Zhang, Xingzhe He, **Shuqi Yang**, Yunjin Tong, Michael Zhan
 **Learning Physical Constraints with Neural Projections**  
 Neural Information Processing Systems (NeurIPS 2020)  
 **Shuqi Yang**, Xingzhe He, Bo Zhu  
+<<<<<<< HEAD
 [[paper](https://arxiv.org/abs/2006.12745)] [[code](https://github.com/dartmouth-phys-ai/neural_proj)]  [[website](https://dartmouth-phys-ai.github.io/projects/neuralProj/)]  
+=======
+[[paper](https://arxiv.org/abs/2006.12745)] [[code](https://github.com/dartmouth-phys-ai/neural_proj)]  [[website](https://dartmouth-phys-ai.github.io/projects/neuralProj/)]  
+>>>>>>> 34d41a7c819bf11f8f15d7e9657105e4461b2a8b
