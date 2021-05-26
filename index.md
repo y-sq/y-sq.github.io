@@ -18,7 +18,7 @@ Before this, I studied for my B.Eng. degree at Dalian University of Technology.
 **Clebsch Gauge Fluid**  
 ACM Transactions on Graphics (SIGGRAPH 2021)  
 **Shuqi Yang**, Shiying Xiong, Yaorui Zhang, Fan Feng, Jinyuan Liu, Bo Zhu   
-[[paper](https://www.cs.dartmouth.edu/~bozhu/papers/clebsch_gauge_fluid.pdf)] [<a href="https://y-sq.github.io/proj/clebsch_gauge_fluid/res/code.zip" download="code.zip">code</a>]  [[webpage](https://y-sq.github.io/proj/clebsch_gauge_fluid/)]
+[[paper](https://www.cs.dartmouth.edu/~bozhu/papers/clebsch_gauge_fluid.pdf)] [<a href="https://y-sq.github.io/proj/clebsch_gauge_fluid/res/code.zip" download="code.zip">code</a>] [[video](https://www.youtube.com/watch?v=QF_XGzrJfa8)] [[webpage](https://y-sq.github.io/proj/clebsch_gauge_fluid/)]
 
 
 <!-- <img src="img/NSSNN.png" align="left" width="30%" style="margin: 0% 5% 2.5% 0%"> -->
@@ -26,7 +26,7 @@ ACM Transactions on Graphics (SIGGRAPH 2021)
 **Nonseparable Symplectic Neural Networks**  
 International Conference on Learning Representations (ICLR 2021)  
 Shiying Xiong, Yunjin Tong, Xingzhe He, **Shuqi Yang**, Cheng Yang, Bo Zhu  
-[[paper](https://arxiv.org/pdf/2010.12636.pdf)] [[supplementary](https://openreview.net/attachment?id=B5VvQrI49Pa&name=supplementary_material)]
+[[paper](https://arxiv.org/pdf/2010.12636.pdf)] [[supplementary](https://openreview.net/attachment?id=B5VvQrI49Pa&name=supplementary_material)][[webpage](https://shiyingxiong.github.io/proj/NSSNN/NSSNN)]
 
 
 <!-- <img src="img/soft_drone.png" align="left" width="30%" style="margin: 0% 5% 2.5% 0%"> -->
