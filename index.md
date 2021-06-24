@@ -6,7 +6,7 @@ title: Shuqi Yang
 **Email**: shuqi.yang.gr@dartmouth.edu; shuqi.yang.98@gmail.com
 
 ## About Me
-I am second-year Master's student at Dartmouth College, advised by Prof. Bo Zhu. My research interests mainly focus on physical simulation and machine learning.   
+I am second-year Master's student at Dartmouth College, advised by Prof. [Bo Zhu](https://www.cs.dartmouth.edu/~bozhu/). My research interests mainly focus on physical simulation and machine learning.   
 Before this, I studied for my B.Eng. degree at Dalian University of Technology.
 
 
